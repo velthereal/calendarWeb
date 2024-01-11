@@ -1,0 +1,41 @@
+@import '../../styles/base.scss';
+
+.calendar {
+	background-color: $white-color;
+	width: 20rem;
+	padding: 0.7rem;
+	margin-left: 1rem;
+	border: 1px solid blue;
+}
+.month-year {
+	display: flex;
+	margin-bottom: 0.7rem;
+	justify-content: space-between;
+	align-items: center;
+}
+.month-year button {
+	font-size: 1.4rem;
+	cursor: pointer;
+}
+.days {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 5px;
+}
+.day-box {
+	height: 2rem;
+	background-color: #f0f0f0;
+	border: 1px solid #ccc;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.day-box.empty {
+	background-color: #e0e0e0;
+	cursor: default;
+}
+.day-box.selected {
+	background-color: blue;
+	color: white;
+}
