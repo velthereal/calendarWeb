@@ -62,7 +62,7 @@ const Calendar = () => {
    	};
 
 	return (
-		<div>
+		<div className='wrapper'>
 			<div className="calendar">
 		   		<div className="month-year">
 					<button onClick={changeToPrevMonth}><i className="fa-solid fa-caret-left"></i></button>
@@ -90,6 +90,8 @@ const Calendar = () => {
 				 	</div>
 			  	)} */}
 		   	</div>
+			<div className='page1'></div>
+			<div className='page2'></div>
 		</div>
 	 );
 }

@@ -1,11 +1,39 @@
 @import '../../styles/base.scss';
+.wrapper {
+	display: flex;
+	align-items: baseline;
+	position: relative;
+}
 
 .calendar {
 	background-color: $white-color;
-	width: 20rem;
-	padding: 0.7rem;
-	margin-left: 1rem;
+	width: 70%;
+	height: 100vh;
+	border-radius: 5px;
+	// width: 20rem;
+	// padding: 0.7rem;
+	// margin-left: 1rem;
 	border: 1px solid blue;
+}
+.page1 {
+	height: 98vh;
+	width: 20px;
+	background-color: $white-color;
+	position: absolute;
+	// top: 0;
+	right: 390px;
+	opacity: .9;
+	border-radius: 0 5px 5px 0;
+}
+.page2 {
+	height: 96vh;
+	width: 20px;
+	background-color: $white-color;
+	position: absolute;
+	top: 0;
+	right: 370px;
+	opacity: .7;
+	border-radius: 0 5px 5px 0;
 }
 .month-year {
 	display: flex;
