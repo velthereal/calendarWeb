@@ -1,69 +1,93 @@
 @import '../../styles/base.scss';
-.wrapper {
-	display: flex;
-	align-items: baseline;
-	position: relative;
-}
 
-.calendar {
-	background-color: $white-color;
-	width: 70%;
-	height: 100vh;
-	border-radius: 5px;
-	// width: 20rem;
-	// padding: 0.7rem;
-	// margin-left: 1rem;
-	border: 1px solid blue;
-}
-.page1 {
-	height: 98vh;
-	width: 20px;
-	background-color: $white-color;
-	position: absolute;
-	// top: 0;
-	right: 390px;
-	opacity: .9;
-	border-radius: 0 5px 5px 0;
-}
-.page2 {
-	height: 96vh;
-	width: 20px;
-	background-color: $white-color;
-	position: absolute;
-	top: 0;
-	right: 370px;
-	opacity: .7;
-	border-radius: 0 5px 5px 0;
-}
-.month-year {
+.wrapper {
+	padding-top: 40px;
 	display: flex;
-	margin-bottom: 0.7rem;
-	justify-content: space-between;
 	align-items: center;
 }
-.month-year button {
-	font-size: 1.4rem;
+.calendar {
+	box-sizing: border-box;
+	background-color: $white-color;
+	width: 820px;
+	height: 90vh;
+	padding: 20px 30px;
+	border-radius: 5px;
+}
+.month-year {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 20px 0 30px;
+}
+.month-year button{
+	border: none;
+	background-color: transparent;
+	font-size: 26px;
+	color: $text-color1;
 	cursor: pointer;
 }
+.month-year h2 {
+	margin: 0;
+	color: $text-color1;
+	font-size: 22px;
+	font-weight: 500;
+}
 .days {
+	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	gap: 5px;
+	grid-template-columns: repeat(7, 90px);
+	justify-content: center;
+}
+.daysName {
+	margin-bottom: 30px;
+	text-align: center;
+	color: $text-color1;
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: 700;
 }
 .day-box {
-	height: 2rem;
-	background-color: #f0f0f0;
-	border: 1px solid #ccc;
+	border-radius: 3px;
+	color: $secondary-color;
+	width: 90px;
+	height: 90px;
+	border: 1px solid #d8d8d8;
+	font-size: 18px;
+	font-weight: 700;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+	transition: .2s;
 }
 .day-box.empty {
 	background-color: #e0e0e0;
 	cursor: default;
 }
-.day-box.selected {
-	background-color: blue;
-	color: white;
+.day-box.from-prev-month, .day-box.from-next-month{
+	color: #d8d8d8;
 }
+.day-box.selected {
+	background-color: $secondary-color;
+	color: white;
+	transform: scale(1.1);
+	font-size: 30px;
+}
+
+// -------------------------------------------
+.page1 {
+	height: 88vh;
+	width: 15px;
+	background-color: $white-color;
+	opacity: .9;
+	border-radius: 0 5px 5px 0;
+}
+.page2 {
+	height: 86vh;
+	width: 15px;
+	background-color: $white-color;
+	opacity: .7;
+	border-radius: 0 5px 5px 0;
+}
+// -------------------------------------------

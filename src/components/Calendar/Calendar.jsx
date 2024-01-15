@@ -29,6 +29,10 @@ const Calendar = () => {
    	const handleDateClick = (date) => {
       	setsDate(date);
    	};
+	const showDaysOfWeek = () => {
+		const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+		return daysOfWeek.map(day => <div className='daysName' key={day}>{ day }</div>)
+	}
    	const showCalendar = () => {
       	// const currDate = new Date();
       	const y = sDate.getFullYear();
@@ -38,26 +42,49 @@ const Calendar = () => {
 
       	const allDays = [];
 
-      	// For empty cells
-       	for (let p = 0; p < fDay; p++) {
-         	allDays.push(<div key={`em-${p}`} className="day-box empty"></div>);
-      	}
+		for(let p = fDay - 1; p >= 0; p--){
+			const prevMonth = m === 0 ? 11 : m - 1;
+			const prevMonthDays = findMonthDays(y, prevMonth);
+			const date = new Date(y, prevMonth, prevMonthDays - p);
+			allDays.push(
+				<div
+					key={`p-${p}`}
+					className={`day-box from-prev-month`}
+					onClick={() => handleDateClick(date)}>
+						{prevMonthDays - p}
+					</div>
+			)
+		}
 
-      	// Show actual days
-      	for (let d = 1; d <= mDays; d++) {
-         	const date = new Date(y, m, d);
-         	const isSelected = sDate && date.toDateString() === sDate.toDateString();
+		for(let d = 1; d <= mDays; d++){
+			const date = new Date(y, m, d);
+			const isSelected = sDate && date.toDateString() === sDate.toDateString();
 
-         	allDays.push(
-            	<div
-               		key={`d-${d}`}
-               		className={`day-box ${isSelected ? "selected" : ""}`}
-               		onClick={() => handleDateClick(date)}>
-               		{d}
-            	</div>
-         	);
-      	}
+			allDays.push(
+				<div
+					key={`d-${d}`}
+					className={`day-box ${isSelected ? 'selected' : ''}`}
+					onClick={() => handleDateClick(date)}>
+						{d}
+					</div>
+			)
+		}
 
+		let nextMonthDay = 1;
+		const remainingDays = 42 - (fDay + mDays);
+		for(let n = 0; n < remainingDays; n++){
+			const nextMonth = m === 11 ? m : 1;
+			const date = new Date(y, nextMonth, nextMonthDay);
+			allDays.push(
+				<div
+					key={`n-${n}`}
+					className={`day-box from-next-month`}
+					onClick={() => handleDateClick(date)}>
+						{nextMonthDay}
+				</div>
+			);
+			nextMonthDay++;
+		}
       	return allDays;
    	};
 
@@ -67,7 +94,7 @@ const Calendar = () => {
 		   		<div className="month-year">
 					<button onClick={changeToPrevMonth}><i className="fa-solid fa-caret-left"></i></button>
 					<h2>
-						{sDate.toLocaleString("default", {
+						{sDate.toLocaleString("en-US", {
 							month: "long",
 							year: "numeric",
 						})}
@@ -75,13 +102,7 @@ const Calendar = () => {
 					<button onClick={changeToNextMonth}><i className="fa-solid fa-caret-right"></i></button>
 		   		</div>
 		   		<div className="days">
-					<div>Sun</div>
-					<div>Mon</div>
-					<div>Tue</div>
-					<div>Wed</div>
-					<div>Thu</div>
-					<div>Fri</div>
-					<div>Sat</div>
+					{showDaysOfWeek()}
 					{showCalendar()}
 				</div>
 			 	{/* {sDate && (
