@@ -1,10 +1,10 @@
-import './add-task.scss';
+import './modal.scss';
 
 import {createPortal} from "react-dom";
 
 const portalRoot = document.getElementById('modal');
 
-const AddTask = (props) => {
+const Modal = (props) => {
 	const { children, showModal, openModalFunc } = props;
 
     const portalContent = (
@@ -17,4 +17,4 @@ const AddTask = (props) => {
     return showModal ? createPortal(portalContent, portalRoot) : null;
 }
 
-export default AddTask;
+export default Modal;

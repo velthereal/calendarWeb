@@ -1,7 +1,7 @@
-import './tasks.scss';
+import './tasks-section.scss';
 
 import TaskBlock from '../TaskBlock';
-import AddTask from '../AddTask';
+import Modal from '../Modal';
 
 import { useState } from 'react';
 
@@ -28,8 +28,19 @@ const TasksSection = (props) => {
 	}
 
 	const modalContent = (
-		<div>  
-        	<p>You really want to delete it?</p>
+		<div className='add-task'>  
+        	<h4>New Task</h4>
+			<input type="date" />
+			<input type="text" placeholder='Enter New Task' />
+			<label htmlFor="">
+				From:
+				<input type="time" />
+			</label>
+			<label htmlFor="">
+				To:
+				<input type="time" />
+			</label>
+			<button type='button'>Add Task</button>
     	</div>
 	);
 
@@ -48,9 +59,9 @@ const TasksSection = (props) => {
 			<TaskBlock />
 			<i class="fa-regular fa-square-plus" onClick={() => onShowDeleteModal()}></i>
 
-			<AddTask showModal={showModal} openModalFunc={setShowModal} >
+			<Modal showModal={showModal} openModalFunc={setShowModal} >
                 {modalContent}
-            </AddTask>
+            </Modal>
 		</div>
 	)
 }
