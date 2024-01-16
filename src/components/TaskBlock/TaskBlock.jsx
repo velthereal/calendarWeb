@@ -7,9 +7,9 @@ const TaskBlock = (props) => {
         <div className='task-block'>
             <div className='task-details'>
                 <div className='task-name'>{task}</div>
-                {/* <div className='task-time'>
+                <div className='task-time'>
                     {startTime} - {endTime}
-                </div> */}
+                </div>
             </div>
         </div>
     )

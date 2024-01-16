@@ -2,13 +2,34 @@ import './tasks-section.scss';
 
 import TaskBlock from '../TaskBlock';
 import Modal from '../Modal';
+import AddTaskBlock from '../AddTaskBlock';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const TasksSection = (props) => {
 	const { sDate } = props;
 
-	const [showModal, setShowModal] = useState(false)
+	const [tasks, setTasks] = useState([]);
+	const [showModal, setShowModal] = useState(false);
+
+	useEffect(() => {
+		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+		setTasks(storedTasks);
+	}, []);
+	const getTasksForDateFromLocalStorage = (date) => {
+		const allTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+		return allTasks.filter(task => task.date === date);
+	}
+	const showTasksForDate = () => {
+		const tasksForDate = getTasksForDateFromLocalStorage(sDate.toISOString().slice(0, 10));
+		return tasksForDate.map(task => (
+			<TaskBlock
+				key={task.startTime}
+				task={task.taskName}
+				startTime={task.startTime}
+				endTime={task.endTime} />
+		))
+	}
 
 	const formatOrdinal = (n) => {
 		const suffixes = ["th", "st", "nd", "rd"];
@@ -27,22 +48,13 @@ const TasksSection = (props) => {
 		setShowModal(true);
 	}
 
-	const modalContent = (
-		<div className='add-task'>  
-        	<h4>New Task</h4>
-			<input type="date" />
-			<input type="text" placeholder='Enter New Task' />
-			<label htmlFor="">
-				From:
-				<input type="time" />
-			</label>
-			<label htmlFor="">
-				To:
-				<input type="time" />
-			</label>
-			<button type='button'>Add Task</button>
-    	</div>
-	);
+	const getTasksForDate = (date) => {
+        return tasks.filter(task => task.date === date.toISOString().slice(0, 10));
+    };
+	const addTask = (newTask) => {
+        const updatedTasks = [...tasks, newTask];
+        setTasks(updatedTasks);
+    };
 
 	return(
 		<div className='day-tasks'>
@@ -56,11 +68,14 @@ const TasksSection = (props) => {
                     </p>
                 </div>
             )}
-			<TaskBlock />
+			{showTasksForDate()}
 			<i class="fa-regular fa-square-plus" onClick={() => onShowDeleteModal()}></i>
 
 			<Modal showModal={showModal} openModalFunc={setShowModal} >
-                {modalContent}
+                <AddTaskBlock
+					formattedDate={sDate}
+					onAddTask={addTask}
+					openModalFunc={setShowModal} />
             </Modal>
 		</div>
 	)
