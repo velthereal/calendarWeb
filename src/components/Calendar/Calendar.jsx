@@ -1,9 +1,7 @@
 import './calendar.scss';
 
-import { useState } from 'react';
-
-const Calendar = () => {
-	const [sDate, setsDate] = useState(new Date());
+const Calendar = (props) => {
+	const { sDate, onDateChange } = props;
 
    	const findMonthDays = (y, m) => {
       	return new Date(y, m + 1, 0).getDate();
@@ -12,14 +10,14 @@ const Calendar = () => {
       	return new Date(y, m, 1).getDay();
    	};
    	const changeToPrevMonth = () => {
-      	setsDate((pDate) => {
+		onDateChange((pDate) => {
         	const pMonth = pDate.getMonth() - 1;
         	const pYear = pDate.getFullYear();
         	return new Date(pYear, pMonth);
       	});
    	};
    	const changeToNextMonth = () => {
-      	setsDate((pDate) => {
+		onDateChange((pDate) => {
          	const nMonth = pDate.getMonth() + 1;
         	const nYear = pDate.getFullYear();
         	return new Date(nYear, nMonth);
@@ -27,14 +25,13 @@ const Calendar = () => {
    	};
 
    	const handleDateClick = (date) => {
-      	setsDate(date);
+		onDateChange(date);
    	};
 	const showDaysOfWeek = () => {
 		const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 		return daysOfWeek.map(day => <div className='daysName' key={day}>{ day }</div>)
 	}
    	const showCalendar = () => {
-      	// const currDate = new Date();
       	const y = sDate.getFullYear();
       	const m = sDate.getMonth();
       	const mDays = findMonthDays(y, m);
@@ -105,11 +102,6 @@ const Calendar = () => {
 					{showDaysOfWeek()}
 					{showCalendar()}
 				</div>
-			 	{/* {sDate && (
-				 	<div className="selected-date">
-						Selected Date: {sDate.toLocaleDateString()}
-				 	</div>
-			  	)} */}
 		   	</div>
 			<div className='page1'></div>
 			<div className='page2'></div>

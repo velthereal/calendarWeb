@@ -1,0 +1,32 @@
+@import '../../styles/base.scss';
+
+.day-tasks {
+	position: relative;
+	width: 400px;
+	padding: 20px;
+}
+.date {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 40px;
+}
+.date h2 {
+	margin: 0;
+	color: $white-color;
+	font-size: 30px;
+	font-weight: 600;
+}
+.date p {
+	margin: 0;
+	color: $text-color3;
+	font-style: italic;
+}
+.fa-square-plus {
+	position: absolute;
+	bottom: 30px;
+	right: 60px;
+	font-size: 40px;
+	color: $text-color3;
+	cursor: pointer;
+}
