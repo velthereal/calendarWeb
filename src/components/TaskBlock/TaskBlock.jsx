@@ -8,12 +8,13 @@ const TaskBlock = (props) => {
 	const [isTaskImportant, setIsTaskImportant] = useState(isImportant); // оголошення стану длч позначення важливості елементу
 
     const toggleImportance = () => {
-        setIsTaskImportant(!isTaskImportant);
+		const updatedIsImportant = !isTaskImportant;
+        setIsTaskImportant(updatedIsImportant);
 
         const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     	const updatedTasks = storedTasks.map((t) =>
       		t.taskId === taskId
-        	? { ...t, isImportant: !isTaskImportant }
+        	? { ...t, isImportant: updatedIsImportant }
         	: t
     	);
         localStorage.setItem('tasks', JSON.stringify(updatedTasks));
