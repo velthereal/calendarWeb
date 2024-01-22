@@ -39,4 +39,16 @@
 	font-size: 40px;
 	color: $text-color3;
 	cursor: pointer;
+	margin-top: 15px;
+}
+@media screen and (max-width: 1024px) {
+	.day-tasks {
+		height: 100vh;
+		width: 600px;
+		overflow: visible;
+	}
+	.fa-square-plus {
+		bottom: 30px;
+		left: 625px;
+	}
 }

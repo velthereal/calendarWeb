@@ -60,6 +60,7 @@ const TasksSection = (props) => {
 		return tasksForDate.map(task => (
 			<TaskBlock
 				key={uuidv4()}
+				taskId={task.taskId}
 				task={task.taskName}
 				startTime={task.startTime}
 				endTime={task.endTime}

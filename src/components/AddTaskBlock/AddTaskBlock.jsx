@@ -5,6 +5,8 @@ import Button from '../Button';
 
 import { useState, useEffect  } from 'react';
 
+import { v4 as uuidv4 } from 'uuid';
+
 const AddTaskBlock = (props) => {
 	const { formattedDate, onAddTask, openModalFunc } = props; 
 	// formattedDate - передана дата з TasksSection
@@ -65,6 +67,7 @@ const AddTaskBlock = (props) => {
 			startTime,
 			endTime,
 			isImportant,
+			taskId: uuidv4(),
 		}; // об'єкт з даними для додавання завдання
 		onAddTask(newTask); // передана функція для додавання завдання
 		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];

@@ -107,3 +107,32 @@
 	background-color: $white-color;
 	margin-top: 8px;
 }
+
+@media screen and (max-width: 1024px) {
+	.wrapper {
+		flex-direction: column;
+	}
+	.calendar {
+		width: 700px;
+		height: 70vh;
+	}
+	.days {
+		grid-template-columns: repeat(7, 70px);
+	}
+	.day-box {
+		width: 70px;
+		height: 70px;
+	}
+	// -------------------------------------------
+	.page1 {
+		height: 10px;
+		width: 688px;
+		border-radius: 0 0 5px 5px;
+	}
+	.page2 {
+		height: 10px;
+		width: 676px;
+		border-radius: 0 0 5px 5px;
+	}
+	// -------------------------------------------
+}

@@ -13,13 +13,15 @@ const Main = () => {
 	}; // функція для зиіни дати при натисканні
 
 	return (
-		<div className='content'>
-			<Calendar
-				sDate={sDate}
-				onDateChange={handleDateChange} />
-			<TasksSection
-				sDate={sDate} />
-		</div>
+		<main>
+			<div className='content'>
+				<Calendar
+					sDate={sDate}
+					onDateChange={handleDateChange} />
+				<TasksSection
+					sDate={sDate} />
+			</div>
+		</main>
 	)
 }
 
