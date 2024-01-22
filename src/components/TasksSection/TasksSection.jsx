@@ -5,57 +5,60 @@ import Modal from '../Modal';
 import AddTaskBlock from '../AddTaskBlock';
 
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const TasksSection = (props) => {
-	const { sDate } = props;
+	const { sDate } = props; // sDate - передана дата з Main
 
-	const [tasks, setTasks] = useState([]);
-	const [showModal, setShowModal] = useState(false);
+	const year1 = sDate.getFullYear();
+	const month1 = String(sDate.getMonth() + 1).padStart(2, '0');
+	const day1 = String(sDate.getDate()).padStart(2, '0');
+	const dateFromLS = `${year1}-${month1}-${day1}`;
 
-	useEffect(() => {
-		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-		setTasks(storedTasks);
-	}, []);
-	const getTasksForDateFromLocalStorage = (date) => {
-		const allTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-		return allTasks.filter(task => task.date === date);
-	}
-	const showTasksForDate = () => {
-		const tasksForDate = getTasksForDateFromLocalStorage(sDate.toISOString().slice(0, 10));
-		return tasksForDate.map(task => (
-			<TaskBlock
-				key={task.startTime}
-				task={task.taskName}
-				startTime={task.startTime}
-				endTime={task.endTime} />
-		))
-	}
+	const [showModal, setShowModal] = useState(false); // для відображення модального вікна з AddTaskBlock
+	const [tasks, setTasks] = useState([]); // масив завдань
+
+	const onShowModal = () => {
+		setShowModal(true);
+	} // функція яка міняє статус закритого модального вікна для AddTaskBlock
 
 	const formatOrdinal = (n) => {
 		const suffixes = ["th", "st", "nd", "rd"];
 		const v = n % 100;
 		return n + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
-	};
+	}; // функція для додавання суфіксу до порядкового числа
 	const formattedDate = sDate ? `${formatOrdinal(sDate.getDate())} ${sDate.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long'
-    })}` : '';
+    })}` : ''; // функція для форматування дати у формат : 20th January 2024
 	const weekday = sDate ? sDate.toLocaleDateString('en-US', {
 		weekday: 'long'
-	}) : '';
+	}) : ''; // функція для отримання дня тижня
 
-	const onShowDeleteModal = () => {
-		setShowModal(true);
-	}
-
-	const getTasksForDate = (date) => {
-        return tasks.filter(task => task.date === date.toISOString().slice(0, 10));
-    };
 	const addTask = (newTask) => {
         const updatedTasks = [...tasks, newTask];
         setTasks(updatedTasks);
-    };
+    }; // функція для додавання завдання
 
+	useEffect(() => {
+		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+		setTasks(storedTasks); // встановлює в tasks завдання з storedTasks
+	}, []); // завантажує з localStorage записані завдання
+	const getTasksForDateFromLocalStorage = (date) => {
+		const allTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+		return allTasks.filter(task => task.date === date); // перевіряє, чи властивість date об'єкта task дорівнює значенню date
+	}; // бере записані завдання з localStorage
+	const showTasksForDate = () => {
+		const tasksForDate = getTasksForDateFromLocalStorage(dateFromLS);
+		return tasksForDate.map(task => (
+			<TaskBlock
+				key={uuidv4()}
+				task={task.taskName}
+				startTime={task.startTime}
+				endTime={task.endTime}
+				isImportant={task.isImportant} />
+		))
+	}; // показує завдання
 	return(
 		<div className='day-tasks'>
 			{sDate && (
@@ -69,8 +72,7 @@ const TasksSection = (props) => {
                 </div>
             )}
 			{showTasksForDate()}
-			<i class="fa-regular fa-square-plus" onClick={() => onShowDeleteModal()}></i>
-
+			<i class="fa-regular fa-square-plus" onClick={() => onShowModal()}></i>
 			<Modal showModal={showModal} openModalFunc={setShowModal} >
                 <AddTaskBlock
 					formattedDate={sDate}

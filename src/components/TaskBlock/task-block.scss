@@ -1,0 +1,52 @@
+@import '../../styles/base.scss';
+
+.task-block {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 15px 10px 15px 20px;
+}
+.task-block:nth-child(even) {
+	background: rgb(72,80,101);
+	background: linear-gradient(259deg, rgba(72,80,101,0.2) 0%, rgba(72,80,101,1) 100%);
+}
+.task-block.important {
+	background: rgb(180,136,221);
+	background: linear-gradient(90deg, rgba(180,136,221,1) 0%, rgba(180,136,221,0.2) 50%);
+}
+.task-details {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.task-block.important .task-details::before {
+	background-color: $white-color;
+}
+.task-details::before {
+	content: '';
+	display: block;
+	width: 10px;
+	height: 10px;
+	background-color: $secondary-color;
+	border-radius: 50%;
+	margin-right: 15px;
+}
+.task-name {
+	font-size: 20px;
+	color: $white-color;
+	font-weight: 700;
+}
+.task-block.important .task-time {
+	color: $white-color;
+}
+.task-time {
+	color: $text-color1;
+	font-weight: 600;
+	font-size: 14px;
+}
+.fa-star {
+	font-size: 20px;
+	color: $secondary-color;
+	cursor: pointer;
+	position: absolute;
+	right: 20px;
+}
