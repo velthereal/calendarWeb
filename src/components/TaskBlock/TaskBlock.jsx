@@ -5,12 +5,12 @@ import { useState } from 'react';
 const TaskBlock = (props) => {
 	const { task, startTime, endTime, isImportant } = props; // task, startTime, endTime - дані, які були записані в localStorage в компоненті TasksSection
 
-	const [isTaskImportant, setIsTaskImportant] = useState(isImportant);
+	const [isTaskImportant, setIsTaskImportant] = useState(isImportant); // оголошення стану длч позначення важливості елементу
 
     const toggleImportance = () => {
         setIsTaskImportant(!isTaskImportant);
 
-        const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const storedTasks = JSON.parse(localStorage.getItem('tasks')) || []; // бере завдання з localStorage
         const updatedTasks = storedTasks.map((t) =>
             t.taskName === task && t.startTime === startTime && t.endTime === endTime
                 ? { ...t, isImportant: !isTaskImportant }

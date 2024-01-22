@@ -1,15 +1,25 @@
 @import '../../styles/base.scss';
 
 .day-tasks {
+	height: 90vh;
 	position: relative;
 	width: 400px;
-	// padding: 20px;
+	overflow-y: auto;
+	scrollbar-width: thin;
 }
+.day-tasks::-webkit-scrollbar {
+	width: 0;
+  }
 .date {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 20px 40px;
+	background-color: $primary-color;
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 2;
 }
 .date h2 {
 	margin: 0;
@@ -23,9 +33,9 @@
 	font-style: italic;
 }
 .fa-square-plus {
-	position: absolute;
+	position: sticky;
 	bottom: 30px;
-	right: 60px;
+	left: 340px;
 	font-size: 40px;
 	color: $text-color3;
 	cursor: pointer;
