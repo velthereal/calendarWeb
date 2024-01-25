@@ -3,13 +3,12 @@ import './task-block.scss';
 import { useState } from 'react';
 
 const TaskBlock = (props) => {
-	const { task, startTime, endTime, isImportant, taskId } = props; // task, startTime, endTime - дані, які були записані в localStorage в компоненті TasksSection
+	const { task, startTime, endTime, isImportant, taskId, updateFunction } = props; // task, startTime, endTime - дані, які були записані в localStorage в компоненті TasksSection
 
 	const [isTaskImportant, setIsTaskImportant] = useState(isImportant); // оголошення стану длч позначення важливості елементу
 
     const toggleImportance = () => {
 		const updatedIsImportant = !isTaskImportant;
-        setIsTaskImportant(updatedIsImportant);
 
         const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     	const updatedTasks = storedTasks.map((t) =>
@@ -18,11 +17,14 @@ const TaskBlock = (props) => {
         	: t
     	);
         localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+		updateFunction((prevState) => !prevState);
+        setIsTaskImportant(updatedIsImportant);
     };
 	const onDeleteTask = () => {
 		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
 		const updatedTasks = storedTasks.filter((t) =>  !(t.taskId=== taskId));
 		localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+		updateFunction((prevState) => !prevState);
 	};
 	
     return (

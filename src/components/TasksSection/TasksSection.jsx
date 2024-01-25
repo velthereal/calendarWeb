@@ -19,6 +19,7 @@ const TasksSection = (props) => {
 
 	const [showModal, setShowModal] = useState(false); // для відображення модального вікна з AddTaskBlock
 	const [tasks, setTasks] = useState([]); // масив завдань
+	const [needUpdate, setNeedUpdate] = useState(false);
 
 	const onShowModal = () => {
 		setShowModal(true);
@@ -45,18 +46,18 @@ const TasksSection = (props) => {
 	useEffect(() => {
 		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
 		setTasks(storedTasks); // встановлює в tasks завдання з storedTasks
-	}, []); // завантажує з localStorage записані завдання
+	}, [needUpdate]); // завантажує з localStorage записані завдання
 	const getTasksForDateFromLocalStorage = (date) => {
 		const allTasks = JSON.parse(localStorage.getItem('tasks')) || [];
 		return allTasks.filter(task => task.date === date); // перевіряє, чи властивість date об'єкта task дорівнює значенню date
 	}; // бере записані завдання з localStorage
 	const showTasksForDate = () => {
 		const tasksForDate = getTasksForDateFromLocalStorage(dateFromLS); // завдання для певної дати
-		const storedTasks = tasksForDate.sort((a, b) => {
-			const timeA = new Date(`${dateFromLS} ${a.startTime}`);
-			const timeB = new Date(`${dateFromLS} ${b.startTime}`);
-			return timeA - timeB;
-		});
+		// const storedTasks = tasksForDate.sort((a, b) => {
+		// 	const timeA = new Date(`${dateFromLS} ${a.startTime}`);
+		// 	const timeB = new Date(`${dateFromLS} ${b.startTime}`);
+		// 	return timeA - timeB;
+		// });
 		return tasksForDate.map(task => (
 			<TaskBlock
 				key={uuidv4()}
@@ -64,7 +65,8 @@ const TasksSection = (props) => {
 				task={task.taskName}
 				startTime={task.startTime}
 				endTime={task.endTime}
-				isImportant={task.isImportant} />
+				isImportant={task.isImportant}
+				updateFunction={setNeedUpdate} />
 		)); // виводить дані в блок завдання
 	}; // показує завдання
 	return(
