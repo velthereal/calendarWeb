@@ -9,11 +9,6 @@ const Calendar = (props) => {
    	const findFirstDay = (y, m) => {
       	return new Date(y, m, 1).getDay();
    	}; // функція для знаходження дня тижня
-	const hasTasksForDate = (date) => {
-		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || []; // знаходить завдання в localStorage
-  		const tasksForDate = storedTasks.filter(task => task.date === date); // створює масив з датами, на які є завдання
-  		return tasksForDate.length > 0; // повертає true/false
-	}; // функція для визначення чи є заплановані завдання на дату
    	const changeToPrevMonth = () => {
 		onDateChange((pDate) => {
         	const pMonth = pDate.getMonth() - 1;
@@ -28,9 +23,6 @@ const Calendar = (props) => {
         	return new Date(nYear, nMonth);
       	});
    	}; // функція для перегортання календаря на наступний місяць
-   	const handleDateClick = (date) => {
-		onDateChange(date);
-   	}; // функція для натискання на певний день календаря
 	const showDaysOfWeek = () => {
 		const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 		return daysOfWeek.map(day => <div className='daysName' key={day}>{ day }</div>); // повертає масив з назвами днів тижня
@@ -108,6 +100,15 @@ const Calendar = (props) => {
 		} // цикл для створення наступного місяця
       	return allDays;
    	}; // функція для виведення всього календаря
+
+	const hasTasksForDate = (date) => {
+		const storedTasks = JSON.parse(localStorage.getItem('tasks')) || []; // знаходить завдання в localStorage
+  		const tasksForDate = storedTasks.filter(task => task.date === date); // створює масив з датами, на які є завдання
+  		return tasksForDate.length > 0; // повертає true/false
+	}; // функція для визначення чи є заплановані завдання на дату
+	const handleDateClick = (date) => {
+		onDateChange(date);
+   	}; // функція для натискання на певний день календаря
 
 	return (
 		<div className='wrapper'>

@@ -53,11 +53,6 @@ const TasksSection = (props) => {
 	}; // бере записані завдання з localStorage
 	const showTasksForDate = () => {
 		const tasksForDate = getTasksForDateFromLocalStorage(dateFromLS); // завдання для певної дати
-		// const storedTasks = tasksForDate.sort((a, b) => {
-		// 	const timeA = new Date(`${dateFromLS} ${a.startTime}`);
-		// 	const timeB = new Date(`${dateFromLS} ${b.startTime}`);
-		// 	return timeA - timeB;
-		// });
 		return tasksForDate.map(task => (
 			<TaskBlock
 				key={uuidv4()}

@@ -20,7 +20,6 @@ const AddTaskBlock = (props) => {
 	const [isImportant, setIsImportant] = useState(false); // для визнечення важливості
 	const [error, setError] = useState('');
 
-	// const [isStartTimeValid, setIsStartTimeValid] = useState(true);
 	const [isEndTimeValid, setIsEndTimeValid] = useState(true);
 
 
@@ -29,10 +28,6 @@ const AddTaskBlock = (props) => {
 			setSelectedDate(formattedDate); //.toISOString().slice(0, 10)
 		}
     }, [formattedDate]); // код визначає, що коли formattedDate змінюється, ми оновлюємо selectedDate відповідно
-
-	const handleDateChange = (newDate) => {
-        setSelectedDate(newDate);
-    }; // функція для зміни дати через Input
 	const onGetTask = (value) => {
 		setError('');
 		setTask(value);
