@@ -37,12 +37,6 @@ const AddTaskBlock = (props) => {
 		setError('');
 		setTask(value);
 	}; // функція для вводу завдання через Input
-	// const onGetStartTime = (value) => {
-	// 	setStartTime(value);
-	// }; // функція для вводу часу початку завдання через Input
-	// const onGetEndTime = (value) => {
-	// 	setEndTime(value);
-	// }; // функція для вводу часу кінця завдання через Input
 
 	const handleAddTask = () => {
 		if(!dateToInput || !task || !startTime || !endTime) {
@@ -99,14 +93,10 @@ const AddTaskBlock = (props) => {
         setStartTime(newStartTime);
         setError('');
     };
-
 	return (
 			<div className='add-task'>  
 				<h4>New Task</h4>
-				<Input
-					type='date'
-					value={dateToInput}
-					onChangeFunction={handleDateChange} />
+				<p className='dateInInput'>{`${day}.${month}.${year}`}</p>
 				<br />
 				<Input
 					value={task}
