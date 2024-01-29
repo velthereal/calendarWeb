@@ -1,54 +1,72 @@
-@import '../../styles/base.scss';
+@import '../../styles/help.scss';
 
 .day-tasks {
-	height: 90vh;
+	@include width-height(400px,90vh);
+	padding-top: 40px;
 	position: relative;
-	width: 400px;
 	overflow-y: auto;
 	scrollbar-width: thin;
 }
 .day-tasks::-webkit-scrollbar {
 	width: 0;
-  }
+}
 .date {
+	@include bg(transparent,20px 40px);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 20px 40px;
-	background-color: $primary-color;
 	position: sticky;
 	top: 0;
 	left: 0;
 	z-index: 2;
 }
 .date h2 {
+	@include heading(30px,$white-color,'Inter',600);
 	margin: 0;
-	color: $white-color;
-	font-size: 30px;
-	font-weight: 600;
 }
 .date p {
+	@include text(16px,$dark-text-color,'Inter',normal,italic);
 	margin: 0;
-	color: $text-color3;
-	font-style: italic;
 }
 .fa-square-plus {
+	margin-top: 15px;
+	font-size: 40px;
+	color: $dark-text-color;
 	position: sticky;
 	bottom: 30px;
 	left: 340px;
-	font-size: 40px;
-	color: $text-color3;
 	cursor: pointer;
-	margin-top: 15px;
 }
 @media screen and (max-width: 1024px) {
 	.day-tasks {
-		height: 100vh;
-		width: 600px;
+		@include width-height(600px,100vh);
 		overflow: visible;
 	}
 	.fa-square-plus {
-		bottom: 30px;
-		left: 625px;
+		left: 750px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.fa-square-plus {
+		left: 620px;
+	}
+}
+@media screen and (max-width: 700px) {
+	.day-tasks {
+		@include width-height(290px);
+		padding-top: 15px;
+
+	}
+	.date {
+		@include bg($primary-color,10px);
+	}
+	.date h2 {
+		@include heading(20px,$white-color,'Inter',600);
+	}
+	.date p {
+		@include text(12px,$dark-text-color,'Inter',normal,italic);
+	}
+	.fa-square-plus {
+		font-size: 25px;
 	}
 }

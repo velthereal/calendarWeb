@@ -10,17 +10,15 @@ const Main = () => {
 
 	const handleDateChange = (newDate) => {
 		setsDate(newDate);
-	}; // функція для зиіни дати при натисканні
+	}; // функція для зміни дати при натисканні
 
 	return (
 		<main>
-			<div className='content'>
-				<Calendar
-					sDate={sDate}
-					onDateChange={handleDateChange} />
-				<TasksSection
-					sDate={sDate} />
-			</div>
+			<Calendar
+				sDate={sDate}
+				onDateChange={handleDateChange} />
+			<TasksSection
+				sDate={sDate} />
 		</main>
 	)
 }

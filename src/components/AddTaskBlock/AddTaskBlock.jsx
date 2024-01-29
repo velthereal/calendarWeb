@@ -20,7 +20,7 @@ const AddTaskBlock = (props) => {
 	const [isImportant, setIsImportant] = useState(false); // для визнечення важливості
 	const [error, setError] = useState('');
 
-	const [isStartTimeValid, setIsStartTimeValid] = useState(true);
+	// const [isStartTimeValid, setIsStartTimeValid] = useState(true);
 	const [isEndTimeValid, setIsEndTimeValid] = useState(true);
 
 
@@ -37,12 +37,12 @@ const AddTaskBlock = (props) => {
 		setError('');
 		setTask(value);
 	}; // функція для вводу завдання через Input
-	const onGetStartTime = (value) => {
-		setStartTime(value);
-	}; // функція для вводу часу початку завдання через Input
-	const onGetEndTime = (value) => {
-		setEndTime(value);
-	}; // функція для вводу часу кінця завдання через Input
+	// const onGetStartTime = (value) => {
+	// 	setStartTime(value);
+	// }; // функція для вводу часу початку завдання через Input
+	// const onGetEndTime = (value) => {
+	// 	setEndTime(value);
+	// }; // функція для вводу часу кінця завдання через Input
 
 	const handleAddTask = () => {
 		if(!dateToInput || !task || !startTime || !endTime) {
