@@ -43,6 +43,10 @@
 .error-message {
 	color: red;
 }
+.dateInInput {
+	@include text(16px,$secondary-color,'Inter',600,italic);
+	margin: 0;
+}
 
 @media screen and (max-width:700px) {
 	.add-task {
