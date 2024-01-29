@@ -1,4 +1,4 @@
-@import '../../styles/base.scss';
+@import '../../styles/help.scss';
 
 .task-block {
 	box-sizing: border-box;
@@ -23,42 +23,60 @@
 }
 .task-details::before {
 	content: '';
+	@include width-height(10px,10px);
+	margin-right: 15px;
 	display: block;
-	width: 10px;
-	height: 10px;
 	background-color: $secondary-color;
 	border-radius: 50%;
-	margin-right: 15px;
 }
 .task-name {
-	font-size: 20px;
-	color: $white-color;
-	font-weight: 700;
+	@include text(20px,$white-color,'Inter',700);
 }
 .task-block.important .task-time {
 	color: $white-color;
 }
 .task-time {
-	color: $text-color1;
-	font-weight: 600;
-	font-size: 14px;
+	@include text(14px,$main-text-color,'Inter',600);
 }
 .fa-star {
 	font-size: 20px;
 	color: $secondary-color;
-	cursor: pointer;
 	position: absolute;
 	right: 20px;
+	cursor: pointer;
 }
 
 .fa-trash {
 	font-size: 24px;
 	color: $secondary-color;
-	cursor: pointer;
 	position: absolute;
 	right: 50px;
 	display: none;
+	cursor: pointer;
 }
 .task-block:hover .fa-trash {
 	display: block;
+}
+
+@media screen and (max-width:700px) {
+	.task-block {
+		padding: 10px 5px 10px 15px;
+	}
+	.task-details::before {
+		content: '';
+		@include width-height(8px,8px);
+		margin-right: 8px;
+	}
+	.task-name {
+		@include text(16px,$white-color,'Inter',700);
+	}
+	.task-time {
+		@include text(12px,$main-text-color,'Inter',600);
+	}
+	.fa-star {
+		font-size: 15px;
+	}
+	.fa-trash {
+		font-size: 15px;
+	}
 }

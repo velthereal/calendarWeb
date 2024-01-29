@@ -1,37 +1,32 @@
-@import '../../styles/base.scss';
+@import '../../styles/help.scss';
 
 .wrapper {
 	display: flex;
 	align-items: center;
 }
 .calendar {
+	@include bg($white-color,20px 30px);
+	@include width-height(820px,90vh);
 	box-sizing: border-box;
-	background-color: $white-color;
-	width: 820px;
-	height: 90vh;
-	padding: 20px 30px;
 	border-radius: 5px;
-	font-family: "Inter", sans-serif;
 }
 .month-year {
+	margin: 20px 0 30px;
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	margin: 20px 0 30px;
 }
 .month-year button{
 	border: none;
 	background-color: transparent;
 	font-size: 26px;
-	color: $text-color1;
+	color: $main-text-color;
 	cursor: pointer;
 }
 .month-year h2 {
+	@include heading(22px,$main-text-color,"Inter",600);
 	margin: 0;
-	color: $text-color1;
-	font-size: 22px;
-	font-weight: 600;
 }
 .days {
 	width: 100%;
@@ -40,70 +35,56 @@
 	justify-content: center;
 }
 .daysName {
+	@include text(18px,$main-text-color,"Inter",700);
 	margin-bottom: 30px;
 	text-align: center;
-	color: $text-color1;
 	text-transform: uppercase;
-	font-size: 18px;
-	font-weight: 700;
 }
 .day-box {
+	@include width-height(90px,90px);
+	@include text(18px,$secondary-color,"Inter",700);
 	border-radius: 3px;
-	color: $secondary-color;
-	width: 90px;
-	height: 90px;
 	border: 1px solid #d8d8d8;
-	font-size: 18px;
-	font-weight: 700;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	cursor: pointer;
 	transition: .2s;
-	flex-direction: column;
-}
-.day-box.empty {
-	background-color: #e0e0e0;
-	cursor: default;
+	cursor: pointer;
+
 }
 .day-box.from-prev-month, .day-box.from-next-month{
 	color: #d8d8d8;
 }
 .day-box.selected {
+	@include text(30px,$white-color,"Inter",700);
 	background-color: $secondary-color;
-	color: white;
 	transform: scale(1.1);
-	font-size: 30px;
 }
 
 // -------------------------------------------
 .page1 {
-	height: 88vh;
-	width: 15px;
+	@include width-height(15px,88vh);
 	background-color: $white-color;
 	opacity: .9;
 	border-radius: 0 5px 5px 0;
 }
 .page2 {
-	height: 86vh;
-	width: 15px;
+	@include width-height(15px,86vh);
 	background-color: $white-color;
 	opacity: .7;
 	border-radius: 0 5px 5px 0;
 }
 // -------------------------------------------
-.task-indicator {
-	display: block;
-	height: 7px;
+.day-box .task-indicator {
+	@include width-height(8px,7px);
+	background-color: $secondary-color;
 	border-radius: 5px;
+	display: block;
 	transition: .3s;
 }
-.day-box .task-indicator {
-	width: 8px;
-	background-color: $secondary-color;
-}
 .day-box.selected .task-indicator {
-	width: 80%;
+	@include width-height(80%,7px);
 	background-color: $white-color;
 	margin-top: 8px;
 }
@@ -111,28 +92,80 @@
 @media screen and (max-width: 1024px) {
 	.wrapper {
 		flex-direction: column;
+		padding-top: 20px;
 	}
 	.calendar {
-		width: 700px;
-		height: 70vh;
+		@include width-height(700px);
 	}
 	.days {
 		grid-template-columns: repeat(7, 70px);
 	}
 	.day-box {
-		width: 70px;
-		height: 70px;
+		@include width-height(70px,70px);
 	}
 	// -------------------------------------------
 	.page1 {
-		height: 10px;
-		width: 688px;
+		@include width-height(688px,10px);
 		border-radius: 0 0 5px 5px;
 	}
 	.page2 {
-		height: 10px;
-		width: 676px;
+		@include width-height(676px,10px);
 		border-radius: 0 0 5px 5px;
 	}
 	// -------------------------------------------
+}
+
+@media screen and (max-width: 700px) {
+	.calendar {
+		@include width-height(290px);
+		padding: 10px;
+	}
+	.days {
+		grid-template-columns: repeat(7, 35px);
+	}
+	// -------------------------------------------
+	.page1 {
+		@include width-height(278px,10px);
+	}
+	.page2 {
+		@include width-height(266px,10px);
+	}
+	// -------------------------------------------
+
+	.month-year {
+		margin: 10px 0 15px;
+	}
+	.month-year button{
+		font-size: 20px;
+	}
+	.month-year h2 {
+		@include heading(18px,$main-text-color,"Inter",600);
+	}
+	.daysName {
+		@include text(12px,$main-text-color,"Inter",700);
+		margin-bottom: 15px;
+	}
+	.day-box {
+		@include width-height(35px,35px);
+		@include text(14px,$secondary-color,"Inter",700);
+	}
+	.day-box.from-prev-month, .day-box.from-next-month{
+		color: #d8d8d8;
+	}
+	.day-box.selected {
+		@include text(18px,$white-color,"Inter",700);
+	}
+	.day-box .task-indicator {
+		@include width-height(4px,4px);
+		background-color: $secondary-color;
+		border-radius: 50%;
+		display: block;
+		transition: .3s;
+	}
+	.day-box.selected .task-indicator {
+		@include width-height(80%,4px);
+		background-color: $white-color;
+		border-radius: 5px;
+		margin-top: 2px;
+	}
 }

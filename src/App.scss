@@ -1,1 +1,6 @@
-@import 'styles/base.scss';
+@import 'styles/help.scss';
+
+.App {
+	background-color: $primary-color;
+	height: 100vh;
+}

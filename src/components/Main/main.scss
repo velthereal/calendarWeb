@@ -1,23 +1,20 @@
-@import '../../styles/base.scss';
+@import '../../styles/help.scss';
 
 main {
-	width: 100%;
-	background-color: $primary-color;
-	height: 100vh;
-}
-.content {
-	padding-top: 40px;
-	width: 1290px;
+	@include bg($primary-color,0);
+	@include width-height(1290px,100vh);
 	margin: 0 auto;
 	display: flex;
-	background-color: $primary-color;
 }
 @media screen and (max-width: 1024px) {
-	.content {
-		padding-top: 40px;
-		width: 768px;
-		margin: 0 auto;
+	main {
+		@include width-height(768px);
 		flex-direction: column;
 		align-items: center;
+	}
+}
+@media screen and (max-width: 700px) {
+	main {
+		@include width-height(300px);
 	}
 }

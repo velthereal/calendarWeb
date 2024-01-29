@@ -1,0 +1,24 @@
+@mixin heading($size,$color,$font,$weight,$style:normal){
+	font-size: $size;
+	color: $color;
+	font-family: $font;
+	font-weight: $weight;
+	font-style: $style;
+}
+@mixin text($size,$color,$font,$weight,$style:normal) {
+	font-size: $size;
+	color: $color;
+	font-family: $font;
+	font-weight: $weight;
+	font-style: $style;
+}
+@mixin bg($bg-color,$padding,$border:none,$box-shadow:none){
+	background-color: $bg-color;
+	padding: $padding;
+	border: $border;
+	box-shadow: $box-shadow;
+}
+@mixin width-height($width,$height:auto){
+	width: $width;
+	height: $height;
+}
